@@ -38,6 +38,8 @@ var eyesColorArr = [
   'green'
 ];
 
+var wizardTemplate = document.querySelector('#similar-wizard-template').content;
+
 // Функция выбора случайного элемента массива
 var getArrRandomElement = function (arr) {
   var randomIndex = Math.floor(Math.random() * arr.length);
@@ -66,14 +68,19 @@ var createWizardsArr = function () {
 };
 
 // Функция подготовки шаблона и вставки волшебников в canvas
-var renderWizardsList = function (array, name, coatColor, eyesColor) {
+var renderWizardsList = function (array) {
+  // Переменные для создания шаблона и его подготовки к отрисовке
+  var wizardTemplateObject = wizardTemplate.querySelector('.setup-similar-item');
+
   for (var i = 0; i < array.length; i++) {
-    // Подготовка информации о волшебнике
-    name.textContent = array[i].name;
-    coatColor.setAttribute('fill', array[i].coatColor);
-    eyesColor.setAttribute('fill', array[i].eyesColor);
-    // Вставка волшебника
+    // Создание ноды
     var wizardNew = wizardTemplateObject.cloneNode(true);
+    // Заполнение ноды нужной информацией из массива
+    wizardNew.querySelector('.setup-similar-label').textContent = array[i].name;
+    wizardNew.querySelector('.wizard-coat').setAttribute('fill', array[i].coatColor);
+    wizardNew.querySelector('.wizard-eyes').setAttribute('fill', array[i].coatColor);
+
+    // Вставка волшебника(ноды)
     wizardSimilarList.appendChild(wizardNew);
   }
 };
@@ -85,19 +92,12 @@ var wizardsArr = createWizardsArr();
 var setupBlock = document.querySelector('.setup');
 setupBlock.classList.remove('hidden');
 
-// Переменные для создания шаблона и его подготовки к отрисовке
-var wizardTemplate = document.querySelector('#similar-wizard-template').content;
-var wizardTemplateObject = wizardTemplate.querySelector('.setup-similar-item');
-var wizardName = wizardTemplate.querySelector('.setup-similar-label');
-var wizardCoatColor = wizardTemplate.querySelector('.wizard-coat');
-var wizardEyesColor = wizardTemplate.querySelector('.wizard-eyes');
-
 // Переменные для вставки волшебников
 var setupSimilar = document.querySelector('.setup-similar');
 var wizardSimilarList = setupSimilar.querySelector('.setup-similar-list');
 
 // Отрисовка волшебников
-renderWizardsList(wizardsArr, wizardName, wizardCoatColor, wizardEyesColor);
+renderWizardsList(wizardsArr);
 
 // Показывает блок похожих персонажей
 setupSimilar.classList.remove('hidden');
