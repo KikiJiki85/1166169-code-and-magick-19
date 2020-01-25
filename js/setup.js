@@ -65,25 +65,39 @@ var createWizardsArr = function () {
   return array;
 };
 
+// Функция подготовки шаблона и вставки волшебников в canvas
+var renderWizardsList = function (array, name, coatColor, eyesColor) {
+  for (var i = 0; i < array.length; i++) {
+    // Подготовка информации о волшебнике
+    name.textContent = array[i].name;
+    coatColor.setAttribute('fill', array[i].coatColor);
+    eyesColor.setAttribute('fill', array[i].eyesColor);
+    // Вставка волшебника
+    var wizardNew = wizardTemplateObject.cloneNode(true);
+    wizardSimilarList.appendChild(wizardNew);
+  }
+};
+
+// Создает массив волшебников
 var wizardsArr = createWizardsArr();
 
+// Показывает блок настроек setup Игры
 var setupBlock = document.querySelector('.setup');
 setupBlock.classList.remove('hidden');
 
+// Переменные для создания шаблона и его подготовки к отрисовке
 var wizardTemplate = document.querySelector('#similar-wizard-template').content;
 var wizardTemplateObject = wizardTemplate.querySelector('.setup-similar-item');
 var wizardName = wizardTemplate.querySelector('.setup-similar-label');
 var wizardCoatColor = wizardTemplate.querySelector('.wizard-coat');
 var wizardEyesColor = wizardTemplate.querySelector('.wizard-eyes');
 
-
-wizardName.textContent = wizardsArr[0].name;
-wizardCoatColor.setAttribute('fill', wizardsArr[0].coatColor);
-wizardEyesColor.setAttribute('fill', wizardsArr[0].eyesColor);
-var wizardNew = wizardTemplateObject.cloneNode(true);
-
+// Переменные для вставки волшебников
 var setupSimilar = document.querySelector('.setup-similar');
 var wizardSimilarList = setupSimilar.querySelector('.setup-similar-list');
-wizardSimilarList.appendChild(wizardNew);
 
+// Отрисовка волшебников
+renderWizardsList(wizardsArr, wizardName, wizardCoatColor, wizardEyesColor);
+
+// Показывает блок похожих персонажей
 setupSimilar.classList.remove('hidden');
