@@ -67,8 +67,8 @@
   var openPopup = function () {
     setupDialogElement.classList.remove('hidden');
     document.addEventListener('keydown', onFormEscKeydown);
-    window.colorize.wizardCoat.addEventListener('click', window.colorize.onWizardCoatClick);
-    window.colorize.wizardEyes.addEventListener('click', window.colorize.onWizardEyesClick);
+    window.similar.wizardCoat.addEventListener('click', window.similar.onWizardCoatClick);
+    window.similar.wizardEyes.addEventListener('click', window.similar.onWizardEyesClick);
     window.colorize.setupFireball.addEventListener('click', window.colorize.onFireballClick);
   };
 
@@ -76,8 +76,8 @@
   var closePopup = function () {
     setupDialogElement.classList.add('hidden');
     document.removeEventListener('keydown', onFormEscKeydown);
-    window.colorize.wizardCoat.removeEventListener('click', window.colorize.onWizardCoatClick);
-    window.colorize.wizardEyes.removeEventListener('click', window.colorize.onWizardEyesClick);
+    window.similar.wizardCoat.removeEventListener('click', window.similar.onWizardCoatClick);
+    window.similar.wizardEyes.removeEventListener('click', window.similar.onWizardEyesClick);
     window.colorize.setupFireball.removeEventListener('click', window.colorize.onFireballClick);
     resetDialogPosition();
   };
