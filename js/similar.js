@@ -36,7 +36,7 @@
     wizardCoat.style.fill = playerWizardCoatColor;
     setupBlock.querySelector('.setup-player').querySelector('input[name="coat-color"]').value = playerWizardCoatColor;
     coatColor = playerWizardCoatColor;
-    window.debounce(updateWizards);
+    window.debounce(updateWizards)();
   };
 
   var onWizardEyesClick = function () {
@@ -44,7 +44,7 @@
     wizardEyes.style.fill = playerWizardEyesColor;
     setupBlock.querySelector('.setup-player').querySelector('input[name="eyes-color"]').value = playerWizardEyesColor;
     eyesColor = playerWizardEyesColor;
-    window.debounce(updateWizards);
+    window.debounce(updateWizards)();
   };
 
   var successHandler = function (data) {
